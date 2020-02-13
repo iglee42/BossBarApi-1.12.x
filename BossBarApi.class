@@ -1,0 +1,51 @@
+package fr.iglee42.bossbarapi;
+
+import org.bukkit.Bukkit;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarFlag;
+import org.bukkit.boss.BarStyle;
+import org.bukkit.boss.BossBar;
+import org.bukkit.entity.Player;
+
+public class BossBarApi {
+	private BossBar bs;
+	public BossBarApi(BarColor color, BarStyle style, String msg) {
+		bs = Bukkit.createBossBar(msg, color, style, null);
+	}
+	public void addFlag(BarFlag flag) {
+		bs.addFlag(flag);
+	}
+	public void addPlayer(Player p) {
+		bs.addPlayer(p);
+	}
+	public void addAllPlayer() {
+		for (Player pls : Bukkit.getOnlinePlayers()) {
+			bs.addPlayer(pls);
+		}
+	}
+	public void setMessage(String msg) {
+		bs.setTitle(msg);
+	}
+	public void setStyle(BarStyle style) {
+		bs.setStyle(style);
+	}
+	public void setColor(BarColor color) {
+		bs.setColor(color);
+	}
+	public void setProgress(double progress) {
+		bs.setProgress(progress);
+	}
+	public void removePlayer(Player p) {
+		if (bs.getPlayers().contains(p)) {
+			bs.removePlayer(p);
+		}
+	}
+	public void removeAllPlayer() {
+		for (Player pls : Bukkit.getOnlinePlayers()) {
+			bs.removePlayer(pls);
+		}
+	}
+	public void removeFlag(BarFlag flag) {
+		bs.removeFlag(flag);
+	}
+}
